@@ -1,5 +1,5 @@
 package Tarea2;
 
-public class Asistencia {
+public abstract class Asistencia {
     
 }

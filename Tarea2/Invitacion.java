@@ -1,7 +1,6 @@
 package Tarea2;
 import java.time.*;
 
-public abstract class Atraso extends Asistencia{
+public class Invitacion {
     private Instant hora;
-    
 }

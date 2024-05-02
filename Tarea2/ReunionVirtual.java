@@ -1,5 +1,5 @@
 package Tarea2;
 
-class ReunionVirtual{
+public abstract class ReunionVirtual extends Reunion{
     private String enlace;
 }

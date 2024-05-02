@@ -6,6 +6,7 @@ public enum tipoReunion {
     MARKETING(200),
     OTRO(300);
 
+    private Reunion typereunionenum;
     private int loquesenecesite;
 
     public int loquesenecesite(){

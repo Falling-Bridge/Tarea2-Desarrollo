@@ -1,5 +1,6 @@
 package Tarea2;
 
-public abstract class Asistencia {
+public class Asistencia {
+    private Empleado employeeasistencia;
     
 }

@@ -1,5 +1,6 @@
 package Tarea2;
+import java.util.ArrayList;
 
-public class Nota {
+public abstract class Nota extends Reunion{
     private String contenido;
 }

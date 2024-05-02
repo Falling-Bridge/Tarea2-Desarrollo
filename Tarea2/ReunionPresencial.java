@@ -1,5 +1,5 @@
 package Tarea2;
 
-public class ReunionPresencial {
+public abstract class ReunionPresencial extends Reunion{
     private String sala;
 }

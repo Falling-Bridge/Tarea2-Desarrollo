@@ -1,6 +1,8 @@
 package Tarea2;
 
-public class Asistencia {
+public class Asistencia extends Reunion {
     private Empleado employeeasistencia;
-    
+    public Asistencia(){
+
+    }
 }

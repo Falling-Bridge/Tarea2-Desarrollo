@@ -3,6 +3,7 @@ package Tarea2;
 public class Departamento implements Invitable {
     private String nombre;
     private Empleado employeedepartamento;
+    private int numEmpleados;
 
     public int ObtenerCantidadEmpleados(){
         return 2147483647;
@@ -12,8 +13,8 @@ public class Departamento implements Invitable {
 
     }
 
-    public Departamento(){
-        
+    public Departamento(int num){
+        numEmpleados = num;
     }
 
 }

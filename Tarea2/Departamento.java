@@ -1,16 +1,18 @@
 package Tarea2;
 
+import java.util.ArrayList;
+
 public class Departamento implements Invitable {
     private String nombre;
-    private Empleado employeedepartamento;
+    private ArrayList<Empleado> employeedepartamento;
     private int numEmpleados;
 
     public int ObtenerCantidadEmpleados(){
-        return 2147483647;
+        return numEmpleados;
     }
 
-    public void invitar(){
-
+    public void invitar(Reunion reu, Empleado emp){
+        reu.agregarInvitados(emp);
     }
 
     public Departamento(int num){

@@ -8,7 +8,6 @@ public class Empleado implements Invitable {
     private String nombre;
     private String correo;
     public Instant horallegada;
-    public int EstadodeLlegada; //0 es llego a la hora, 1 es llego atrasado, y 2 es no llego
 
     @Override
     public void invitar(Reunion reu, Empleado emp){
@@ -22,6 +21,6 @@ public class Empleado implements Invitable {
         id = x;
     }
     public String Datos(){
-        return id + " " + apellidos + " " + nombre + " " + correo;
+        return "id: " + id + "\nnombre: " + nombre + "\nAapellidos: " + apellidos + "\ncorreo: " + correo;
     }
 }

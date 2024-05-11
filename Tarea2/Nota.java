@@ -1,6 +1,12 @@
 package Tarea2;
 import java.util.ArrayList;
 
-public abstract class Nota extends Reunion{
-    private String contenido;
+public class Nota {
+    String anotacion;
+    public Nota(String s) {
+        anotacion = s;
+    }
+    public String getAnotacion(){
+        return anotacion;
+    }
 }

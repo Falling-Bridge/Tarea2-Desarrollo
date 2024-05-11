@@ -42,13 +42,12 @@ public abstract class Reunion {
         em.horallegada = Instant.now();
         attendace.addAsistentes(em);//crear una exceocion ern caso de que intenten meter a un no invitado
         if(horaInicio == null){
-            em.EstadodeLlegada = 0;
+            attendace.addAsistentes(em);
         }
         else if(em.horallegada.compareTo(horaInicio) < 0){
-            em.EstadodeLlegada = 0;
+            attendace.addAsistentes(em);
         }
         else{
-            em.EstadodeLlegada = 1;
             attendace.ingresarAtrasados(em);
         }
     }

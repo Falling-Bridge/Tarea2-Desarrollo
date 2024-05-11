@@ -6,8 +6,8 @@ public class Invitacion implements Invitable{
     private Instant hora;
     public ArrayList<Empleado> invitado;
 
-    public void invitar(Empleado emp){
-        invitado.add(emp);
+    public void invitar(Reunion reu, Empleado emp){
+        reu.agregarInvitados(emp);
     }
     public Invitacion(){
         invitado = new ArrayList<Empleado>();

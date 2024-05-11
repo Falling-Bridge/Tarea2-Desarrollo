@@ -1,8 +1,12 @@
 package Tarea2;
 
-public abstract class ReunionPresencial extends Reunion{
+public class ReunionPresencial extends Reunion{
     private String sala;
-    public ReunionPresencial(){
-
+    public ReunionPresencial(Empleado org, tipoReunion tipo, String lugar){
+        super(org, tipo);
+        this.sala = lugar;
+    }
+    public String getSala(){
+        return sala;
     }
 }

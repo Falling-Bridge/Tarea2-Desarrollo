@@ -1,4 +1,4 @@
-package Tarea2;
+package Tarea2.Reunion;
 
 public enum tipoReunion {
 

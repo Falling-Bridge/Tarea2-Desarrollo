@@ -1,4 +1,6 @@
-package Tarea2;
+package Tarea2.Reunion;
+
+import Tarea2.Empleado;
 
 public class ReunionPresencial extends Reunion{
     private String sala;

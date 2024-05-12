@@ -1,7 +1,7 @@
-package Tarea2; 
+package Tarea2.Reunion;
+import Tarea2.*;
+
 import java.time.*;
-import java.util.List;
-import java.util.Date;
 import java.util.ArrayList;
 
 public abstract class Reunion {

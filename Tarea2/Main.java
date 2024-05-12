@@ -1,4 +1,6 @@
 package Tarea2;
+import Tarea2.excepciones.*;
+
 public class Main {
     public static void main(String[] args) throws Exception{
         Empleado trabajador1 = new Empleado("" +10, "Empleado1" ,  "Empleado1@gmail.com", "perez");

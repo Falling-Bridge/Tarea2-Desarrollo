@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public abstract class Asistencia  {
     protected ArrayList<Empleado> employeeasistencia;
+    
     public Asistencia(){
     employeeasistencia = new ArrayList<Empleado>();
     }

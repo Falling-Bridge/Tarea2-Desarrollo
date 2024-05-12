@@ -1,5 +1,8 @@
 package Tarea2;
 import java.util.ArrayList;
+import Tarea2.excepciones.*;
+
+
 import java.io.FileWriter;
 import java.io.IOException;
 

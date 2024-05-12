@@ -104,7 +104,7 @@ public void finalizar(){
 * Metodo que se usa en Nota para entregar mas informción acerca del organizador de la reunion
 * */
     public String datosOrganizador(){
-        return Organizador.Datos();
+        return Organizador.getDatos();
     }
 
     public Reunion(Empleado org, tipoReunion tipo){

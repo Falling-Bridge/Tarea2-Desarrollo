@@ -16,7 +16,7 @@ public class Informe {//esta cumple las necesidades de la clase informe, no de n
                 if (asistentes.size() != 0) {
                     for (int i = 0; i < asistentes.size(); i++) {
                         Empleado emp1 = asistentes.get(i);
-                        escritor.write(emp1.Datos() + "\n"); // Escribir los datos de los empleados q asistieron
+                        escritor.write(emp1.getDatos() + "\n"); // Escribir los datos de los empleados q asistieron
                     }
                 } else {
                     escritor.write("Ninguna persona asiastio a la reunión");
@@ -27,7 +27,7 @@ public class Informe {//esta cumple las necesidades de la clase informe, no de n
                 if (atrasados.size() != 0) {
                     for (int i = 0; i < atrasados.size(); i++) {
                         Empleado emp1 = atrasados.get(i);
-                        escritor.write(emp1.Datos() + "\n"); // Escribir los datos de los empleados q asistieron
+                        escritor.write(emp1.getDatos() + "\n"); // Escribir los datos de los empleados q asistieron
                     }
                 } else {
                     escritor.write("Ninguna persona llego atrasada a la reunión");

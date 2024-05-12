@@ -8,10 +8,12 @@ public class Departamento implements Invitable {
     private int numEmpleados;
 
     public int ObtenerCantidadEmpleados(){
+
         return numEmpleados;
     }
 
     public void invitar(Reunion reu, Empleado emp){
+
         reu.agregarInvitados(emp);
     }
 

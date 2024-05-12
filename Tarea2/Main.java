@@ -8,7 +8,7 @@ public class Main {
         Empleado trabajador2 = new Empleado("" +20, "Empleado2" ,  "Empleado2@gmail.com", "perez");
         Empleado trabajador3 = new Empleado("" +30, "Empleado3" ,  "Empleado3@gmail.com", "perez");
         Empleado trabajador4 = new Empleado("" +40, "Empleado4" ,  "Empleado4@gmail.com", "perez");
-        System.out.println(trabajador1.Datos());
+        System.out.println(trabajador1.getDatos());
 
         tipoReunion tipo = tipoReunion.MARKETING ;
         String salareu = "sala202";

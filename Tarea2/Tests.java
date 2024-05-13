@@ -1,5 +1,7 @@
 package Tarea2;
-import Tarea2.Reunion.Reunion;
+import Tarea2.Reunion.*;
+import Tarea2.Reunion.ReunionPresencial;
+import Tarea2.Reunion.tipoReunion;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,9 +43,16 @@ public class Tests {
         assertEquals(2, departamento.ObtenerCantidadEmpleados(), "El número de empleados debe ser 3");
     }
 
-    @Test   @DisplayName("test 04")
-    public void CrearReuniones(){
+    @Test   @DisplayName("test 04") //creación de reunión presencial
+    public void CrearReunionespresenciales() {
         Departamento departamento = new Departamento(0);
+        Empleado organizador = new Empleado("001", "Juan", "Pérez", "juan@example.com");
+        departamento.AgregarEmpleado(organizador);
+        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.MARKETING, "Sala 202");
 
+        assertNotNull(reunionpres, "La reunión presencial no se creó correctamente");
+        assertEquals(organizador, departamento.getOrganizador(), "El organizador de la reunión no coincide");
+        assertEquals(tipoReunion.MARKETING, reunionpres.getType(), "El tipo de reunión no coincide");
+        assertEquals("Sala 202", reunionpres.getSala(), "El lugar de la reunión no coincide");
     }
 }

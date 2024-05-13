@@ -5,9 +5,11 @@ import java.util.*;
 public class Departamento implements Invitable {
     private String nombre;
     private ArrayList<Empleado> employeedepartamento; // Cambiamos ArrayList a Set
-    private ArrayList<Reunion> empleadosreunion;
     private int numEmpleados;
-    private String organizacion;
+
+    public Empleado getOrganizador(){
+        return employeedepartamento.getFirst();
+    }
 
     public int ObtenerCantidadEmpleados(){
         for (Empleado empleado : employeedepartamento) {
@@ -30,13 +32,8 @@ public class Departamento implements Invitable {
         reu.agregarInvitados(emp);
     }
 
-    public void String Organizadorreunion(){
-        organizador = employeedepartamento.getFirst();
-    }
-
     public Departamento(int num){
         numEmpleados = num;
         employeedepartamento = new ArrayList<>();
-        empleadosreunion = new ArrayList<>();
     }
 }

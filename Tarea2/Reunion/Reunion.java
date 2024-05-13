@@ -1,20 +1,22 @@
 package Tarea2.Reunion;
 import Tarea2.*;
+
+import java.lang.annotation.ElementType;
 import java.time.*;
 import java.util.ArrayList;
 
 public abstract class Reunion {
+    private Atraso attendace;
     private long fecha;
-    private Instant horaPrevista;
     private Empleado Organizador;
     private Duration duracionPrevista;
+    private Instant horaPrevista;
     private Instant horaInicio;
     private Instant horaFin;
-    private Atraso attendace;
     private Invitacion listaInvitados;
-    private ArrayList<Nota> notas;
     private Empleado employeereunion;
     private tipoReunion typereunionreunion;
+    private ArrayList<Nota> notas;
     private ArrayList<Nota> informeReunion;
 
     public void agregarInvitados(Empleado emp){
@@ -79,31 +81,31 @@ public abstract class Reunion {
     public ArrayList getNoptas(){
         return notas;
     }
-/*
-* Calcula el tiempo que dura la reunion considerando la hora de inicio y la hora de finalización
-* */public Duration getDuracion(){
+    /*
+    * Calcula el tiempo que dura la reunion considerando la hora de inicio y la hora de finalización
+    * */
+    public Duration getDuracion(){
         duracionPrevista = Duration.between(horaInicio, horaFin);
         return duracionPrevista;
     }
-/*
-* Al llamar a este metódo se marca la hora de inicio de la reunion
-* con una función de time.Instant
-* */public void iniciar(){
-        horaInicio = Instant.now();
-    }
+    /*
+    * Al llamar a este metódo se marca la hora de inicio de la reunion
+    * con una función de time.Instant
+    * */public void iniciar(){
+            horaInicio = Instant.now();
+        }
 
-/*
-*Al llamar este metódo se marca la hora en que se finaliza la reunión
-* */
-public void finalizar(){
-        horaFin = Instant.now();
-    }
-
-/*
-* Metodo que se usa en Nota para entregar mas informción acerca del organizador de la reunion
-* */
-    public String datosOrganizador(){
-        return Organizador.getDatos();
+    /*
+    *Al llamar este metódo se marca la hora en que se finaliza la reunión
+    * */
+    public void finalizar(){
+            horaFin = Instant.now();
+        }
+    /*
+    * Metodo que se usa en Nota para entregar mas informción acerca del organizador de la reunion
+    * */
+    public Empleado datosOrganizador(){
+        return Organizador;
     }
 
     public Reunion(Empleado org, tipoReunion tipo){

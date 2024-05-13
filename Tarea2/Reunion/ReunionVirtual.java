@@ -1,5 +1,6 @@
 package Tarea2.Reunion;
 
+import Tarea2.Departamento;
 import Tarea2.Empleado;
 
 public class ReunionVirtual extends Reunion{
@@ -11,4 +12,5 @@ public class ReunionVirtual extends Reunion{
     public String getEnlace(){
         return enlace;
     }
+
 }

@@ -12,6 +12,7 @@ public class Atraso extends Asistencia{
     }
 
     public void ingresarAtrasados(Empleado emp){
+
         atrasados.add(emp);
     }
 

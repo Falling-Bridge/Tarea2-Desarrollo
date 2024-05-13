@@ -10,10 +10,12 @@ public enum tipoReunion {
     private int loquesenecesite;
 
     public int loquesenecesite(){
+
         return loquesenecesite;
     }
     
     private tipoReunion (final int whatever){
+
         loquesenecesite = whatever;
     }
 }

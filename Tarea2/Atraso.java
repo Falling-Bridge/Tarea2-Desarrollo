@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Atraso extends Asistencia{
     private Instant hora;
     private ArrayList<Empleado> atrasados;
+    
     public Atraso(){
         super();
         atrasados = new ArrayList<Empleado>();

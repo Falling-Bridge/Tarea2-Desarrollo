@@ -1,8 +1,6 @@
-package Tarea2.Reunion;
+package Tarea2;
 
-import Tarea2.Empleado;
-
-public class ReunionVirtual extends Reunion{
+public class ReunionVirtual extends Reunion {
     private String enlace;
     public ReunionVirtual(Empleado org, tipoReunion tipo, String enlceunion){
         super(org, tipo);

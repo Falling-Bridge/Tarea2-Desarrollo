@@ -1,5 +1,4 @@
 package Tarea2;
-import Tarea2.Reunion.*;
 import java.time.*;
 import java.util.ArrayList;
 
@@ -12,5 +11,9 @@ public class Invitacion implements Invitable{
     }
     public Invitacion(){
         invitado = new ArrayList<Empleado>();
+    }
+
+    public ArrayList<Empleado> getInvitados(){
+        return invitado;
     }
 }

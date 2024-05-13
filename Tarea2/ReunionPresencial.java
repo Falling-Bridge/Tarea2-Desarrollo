@@ -1,8 +1,6 @@
-package Tarea2.Reunion;
+package Tarea2;
 
-import Tarea2.Empleado;
-
-public class ReunionPresencial extends Reunion{
+public class ReunionPresencial extends Reunion {
     private String sala;
     public ReunionPresencial(Empleado org, tipoReunion tipo, String lugar){
         super(org, tipo);

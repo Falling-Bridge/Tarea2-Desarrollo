@@ -1,5 +1,4 @@
 package Tarea2;
-import Tarea2.Reunion.Reunion;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +12,7 @@ public class Tests {
         String apellidos = "Flar";
         Empleado empleado1 = new Empleado(id, nombre, apellidos, correo);
         String datosEsperados = "id: 001; nombre: Alvaro; Apellidos: Flar; correo: alvaro@example.com";
-        assertEquals(datosEsperados, empleado1.getDatos(), "Falla en test01:");
+        assertEquals(datosEsperados, empleado1.Datos(), "Falla en test01:");
     }
 
     @Test   @DisplayName("test02")//agregación de los empleados a la lista de empleados

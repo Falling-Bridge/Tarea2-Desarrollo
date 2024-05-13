@@ -1,4 +1,4 @@
-package Tarea2.excepciones;
+package Tarea2;
 
 public class FaltanDatosEmpleado extends Exception {
     public FaltanDatosEmpleado() {

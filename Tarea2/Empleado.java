@@ -1,6 +1,4 @@
 package Tarea2;
-import Tarea2.excepciones.*;
-import Tarea2.Reunion.*;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -35,7 +33,7 @@ public class Empleado implements Invitable {
         return Objects.hash(id);
     }
 
-    public String getDatos(){
+    public String Datos(){
         return "id: " + id + "; nombre: " + nombre + "; Apellidos: " + apellidos + "; correo: " + correo ;
     }
 }

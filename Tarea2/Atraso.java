@@ -18,7 +18,4 @@ public class Atraso extends Asistencia{
     public ArrayList<Empleado> getAtrasados(){
         return atrasados;
     }
-
-
-    
 }

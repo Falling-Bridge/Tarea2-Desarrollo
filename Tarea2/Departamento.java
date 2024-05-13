@@ -1,5 +1,4 @@
 package Tarea2;
-import Tarea2.Reunion.*;
 import java.util.*;
 
 public class Departamento implements Invitable {
@@ -11,7 +10,7 @@ public class Departamento implements Invitable {
 
     public int ObtenerCantidadEmpleados(){
         for (Empleado empleado : employeedepartamento) {
-            System.out.println(empleado.getDatos());
+            System.out.println(empleado.Datos());
         }
         return numEmpleados;
     }
@@ -30,8 +29,8 @@ public class Departamento implements Invitable {
         reu.agregarInvitados(emp);
     }
 
-    public void String Organizadorreunion(){
-        organizador = employeedepartamento.getFirst();
+    public Empleado Organizadorreunion(){
+        return employeedepartamento.getFirst();
     }
 
     public Departamento(int num){

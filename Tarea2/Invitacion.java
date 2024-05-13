@@ -8,9 +8,11 @@ public class Invitacion implements Invitable{
     public ArrayList<Empleado> invitado;
 
     public void invitar(Reunion reu, Empleado emp){
+
         reu.agregarInvitados(emp);
     }
     public Invitacion(){
+
         invitado = new ArrayList<Empleado>();
     }
 }

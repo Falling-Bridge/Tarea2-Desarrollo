@@ -1,7 +1,5 @@
 package Tarea2.Reunion;
 import Tarea2.*;
-
-import java.lang.annotation.ElementType;
 import java.time.*;
 import java.util.ArrayList;
 
@@ -20,10 +18,12 @@ public abstract class Reunion {
     private ArrayList<Nota> informeReunion;
 
     public void agregarInvitados(Empleado emp){
+
         listaInvitados.invitado.add(emp);
     }
 
     public ArrayList<Empleado> obtenerAsistencias(){
+
         return attendace.getAsistentes();
     }
 

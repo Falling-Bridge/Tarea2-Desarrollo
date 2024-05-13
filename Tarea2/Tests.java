@@ -9,11 +9,7 @@ public class Tests {
 
     @Test   @DisplayName("test01")//prueba la creación de empleados (no se agrega a la lista)
     public void testCrearEmpleado() {
-        String id = "001";
-        String nombre = "Alvaro";
-        String correo = "alvaro@example.com";
-        String apellidos = "Flar";
-        Empleado empleado1 = new Empleado(id, nombre, apellidos, correo);
+        Empleado empleado1 = new Empleado("001", "Alvaro","Flar", "alvaro@example.com");
         String datosEsperados = "id: 001; nombre: Alvaro; Apellidos: Flar; correo: alvaro@example.com";
         assertEquals(datosEsperados, empleado1.getDatos(), "Falla en test01:");
     }
@@ -54,5 +50,28 @@ public class Tests {
         assertEquals(organizador, departamento.getOrganizador(), "El organizador de la reunión no coincide");
         assertEquals(tipoReunion.MARKETING, reunionpres.getType(), "El tipo de reunión no coincide");
         assertEquals("Sala 202", reunionpres.getSala(), "El lugar de la reunión no coincide");
+    }
+
+    @Test   @DisplayName("test 05") //creación de reunión presencial
+    public void CrearReunionesvirtuales() {
+        Departamento departamento = new Departamento(0);
+        Empleado organizador = new Empleado("001", "Juan", "Pérez", "juan@example.com");
+        departamento.AgregarEmpleado(organizador);
+        ReunionVirtual reunionvir = new ReunionVirtual(organizador, tipoReunion.MARKETING, "https://www.youtube.com/watch?v=xvFZjo5PgG0");
+
+        assertNotNull(reunionvir, "La reunión virtual no se creó correctamente");
+        assertEquals(organizador, departamento.getOrganizador(), "El organizador de la reunión no coincide");
+        assertEquals(tipoReunion.MARKETING, reunionvir.getType(), "El tipo de reunión no coincide");
+        assertEquals("https://www.youtube.com/watch?v=xvFZjo5PgG0", reunionvir.getEnlace(), "El lugar de la reunión no coincide");
+    }
+
+    @Test   @DisplayName("test 06")
+    public void CrearReunionespresencialesconempleados() { //reunion presencial con tiempos
+        Departamento departamento = new Departamento(0);
+        Empleado organizador = new Empleado("001", "Juan", "Pérez", "juan@example.com");
+        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.MARKETING, "Sala 202");
+        reunionpres.getDuracion();
+        reunionpres.iniciar();
+        reunionpres.finalizar();
     }
 }

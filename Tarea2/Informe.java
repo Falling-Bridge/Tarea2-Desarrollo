@@ -22,10 +22,11 @@ public class Informe {
                 escritor.write("La reunion es de tipo " + reu.obtenerTipoReunion() + "\n\n");
 
                 if (!reu.obtenerAsistencias().isEmpty()) {
+                    escritor.write("Los empleados que asistieron a la reunion fueron: \n\n");
                     for (Empleado emp : reu.obtenerAsistencias()) {
                         escritor.write(emp.Datos() + "\n"); // Escribir los datos de los empleados q asistieron
-                        escritor.write("Y el porcentaje de asistentes fue de un " + reu.obtenerPorcentajeAsistencia() + "%");
                     }
+                    escritor.write("\nY el porcentaje de asistentes fue de un " + reu.obtenerPorcentajeAsistencia() + "%\n");
                 }
                 else {
                     escritor.write("Ninguna persona asiastio a la reunión");
@@ -33,23 +34,24 @@ public class Informe {
                 }
 
                 if (!reu.obtenerAtraso().isEmpty()) {
+                    escritor.write("\nLos empleados que llegaron tarde son: \n\n");
                     for (Empleado emp : reu.obtenerAtraso()) {
                         escritor.write(emp.Datos() + "\n"); // Escribir los datos de los empleados que llegaron tarde
                     }
                 }
                 else {
-                    escritor.write("Ninguna persona llego atrasada a la reunión\n\n");
+                    escritor.write("\nNinguna persona llego atrasada a la reunión\n\n");
                     throw new SinContenidoException("Ninguna persona llegoa atrasada\n");
                 }
 
                 if(!reu.obtenerAusencias().isEmpty()) {
-                    escritor.write("Las personas que llegaron ausentes fueron: \n\n");
+                    escritor.write("\nLas personas que no llegaron a la reunión fueron: \n\n");
                     for (Empleado ausente : reu.obtenerAusencias()) {
                         escritor.write(ausente.Datos() + "\n");
                     }
                 }
                 else {
-                    escritor.write("Ninguna persona falto a la reunión\n\n");
+                    escritor.write("\nNinguna persona falto a la reunión\n\n");
                     throw new SinContenidoException("Ningun empleado falto a la reunion\n");
                 }
 
@@ -61,9 +63,9 @@ public class Informe {
                 }
 
 
-                escritor.write("Las notas generadas en la reunion fueron las siguente: \n\n");
                 ArrayList<Nota> notasfinales = reu.getNotas();
                 if (!notasfinales.isEmpty()) {
+                    escritor.write("Las notas generadas en la reunion fueron las siguente: \n\n");
                     for (int i = 0; i < notasfinales.size(); i++) {
                         escritor.write(notasfinales.get(i).getAnotacion() + "\n\n");
                     }

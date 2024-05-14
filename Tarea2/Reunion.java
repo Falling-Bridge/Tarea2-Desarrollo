@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public abstract class Reunion {
     private Date fecha;
     private LocalTime horadeCreacion;
-    private Instant horaPrevista;
     private Empleado Organizador;
     private Duration duracionPrevista;
     private Instant horaInicio;
@@ -15,9 +14,7 @@ public abstract class Reunion {
     private Atraso attendace;
     private Invitacion listaInvitados;
     private ArrayList<Nota> notas;
-    private Empleado employeereunion;
     private tipoReunion typereunionreunion;
-    private ArrayList<Nota> informeReunion;
 
     public void agregarInvitados(Empleado emp){
         listaInvitados.invitado.add(emp);
@@ -35,8 +32,7 @@ public abstract class Reunion {
         return typereunionreunion;
     }
     public Object[] obtenerFechayHoraReunion(){
-        Object[] FyH = {fecha, horadeCreacion};
-        return FyH;
+        return new Object[]{fecha, horadeCreacion};
     }
 
     public Instant[] obtenerHoraInicioyFin(){
@@ -60,17 +56,19 @@ public abstract class Reunion {
         return ausentes;
     }
 
-    public void llegadaEmpleados(Empleado em){
-        em.horallegada = Instant.now();
-        attendace.addAsistentes(em);//crear una exceocion ern caso de que intenten meter a un no invitado
-        if(horaInicio == null){
-            attendace.addAsistentes(em);
+    public void llegadaEmpleados(Empleado em) throws Exception{
+        if(listaInvitados.getInvitados().contains(em)){
+            em.horallegada = Instant.now();
+            if (horaInicio == null) {
+                attendace.addAsistentes(em);
+            } else if (em.horallegada.compareTo(horaInicio) < 0) {
+                attendace.addAsistentes(em);
+            } else {
+                attendace.ingresarAtrasados(em);
+            }
         }
-        else if(em.horallegada.compareTo(horaInicio) < 0){
-            attendace.addAsistentes(em);
-        }
-        else{
-            attendace.ingresarAtrasados(em);
+        else {
+            throw new EmpleadoNoInvitadoException();
         }
     }
 
@@ -83,7 +81,7 @@ public abstract class Reunion {
     }
 
     public float obtenerPorcentajeAsistencia(){ //float
-        return (float) listaInvitados.invitado.size() / (attendace.cantAsistentes()) * 100;
+        return (float) (attendace.cantAsistentes()) / listaInvitados.invitado.size();
     }
 
     /*
@@ -132,6 +130,7 @@ public abstract class Reunion {
 
     public Reunion(Empleado org, tipoReunion tipo){
         attendace = new Atraso();
+        listaInvitados = new Invitacion();
         notas = new ArrayList<Nota>();
         Organizador = org;
         fecha = new Date();

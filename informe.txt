@@ -1,0 +1,30 @@
+Organizador de la reunión: 
+id: 10; nombre: Empleado1; Apellidos: perez; correo: Empleado1@gmail.com
+
+La reunion se creo el día Tue May 14 00:47:10 CLT 2024 a las 00:47:10.475959700, empezo a las 2024-05-14T04:47:10.475959700Z y termino a las  2024-05-14T04:47:10.476967100Z y duro un tiempo de PT0.0010074S
+
+La reunion es de tipo MARKETING
+
+Los empleados que asistieron a la reunion fueron: 
+
+id: 20; nombre: Empleado2; Apellidos: perez; correo: Empleado2@gmail.com
+id: 10; nombre: Empleado1; Apellidos: perez; correo: Empleado1@gmail.com
+
+Y el porcentaje de asistentes fue de un 0.5%
+
+Los empleados que llegaron tarde son: 
+
+id: 30; nombre: Empleado3; Apellidos: perez; correo: Empleado3@gmail.com
+
+Las personas que no llegaron a la reunión fueron: 
+
+id: 30; nombre: Empleado3; Apellidos: perez; correo: Empleado3@gmail.com
+id: 40; nombre: Empleado4; Apellidos: perez; correo: Empleado4@gmail.com
+La reunión fue precencial y fue en la sala: sala202
+
+Las notas generadas en la reunion fueron las siguente: 
+
+El trabajador 3 llego tarde xd
+
+El trabajador 4 no llego a la reunión xd
+

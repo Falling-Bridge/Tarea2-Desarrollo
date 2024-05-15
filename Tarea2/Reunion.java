@@ -49,6 +49,12 @@ public abstract class Reunion {
                     break;
                 }
             }
+            for (Empleado atrasado : attendace.getAtrasados()) {
+                if (atrasado == invitado) {
+                    asistio = true;
+                    break;
+                }
+            }
             if (!asistio) {
                 ausentes.add(invitado);
             }

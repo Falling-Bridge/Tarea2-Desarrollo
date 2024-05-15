@@ -1,58 +1,82 @@
 package Tarea2;
-import java.util.ArrayList;
 import Tarea2.Reunion.*;
 import Tarea2.excepciones.*;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.time.*;
+import java.util.ArrayList;
+import java.io.*;
 
-public class Informe {//esta cumple las necesidades de la clase informe, no de nota, nota es simplemente un string, cambiar y crear la nueva
+public class Informe {
     public Informe(Reunion reu) throws Exception{
         String nombreArchivo = "informe.txt";
         try {
             FileWriter escritor = new FileWriter(nombreArchivo);
             if(reu != null) {
+
                 escritor.write("Organizador de la reunión: \n" + reu.datosOrganizador() + "\n\n");
-                ArrayList<Empleado> asistentes = reu.obtenerAsistencias();
-                if (asistentes.size() != 0) {
-                    for (int i = 0; i < asistentes.size(); i++) {
-                        Empleado emp1 = asistentes.get(i);
-                        escritor.write(emp1.getDatos() + "\n"); // Escribir los datos de los empleados q asistieron
+                Object[] FechayHora = reu.obtenerFechayHoraReunion();
+                escritor.write("La reunion se creo el día " + FechayHora[0] + " a las " + FechayHora[1]);
+                Instant[] horas = reu.obtenerHoraInicioyFin();
+                escritor.write(", empezo a las " + horas[0] + " y termino a las  " + horas[1]);
+                escritor.write(" y duro un tiempo de " + Duration.between(horas[0], horas[1]) + "\n\n");
+                escritor.write("La reunion es de tipo " + reu.obtenerTipoReunion() + "\n\n");
+
+                if (!reu.obtenerAsistencias().isEmpty()) {
+                    escritor.write("Los empleados que asistieron a la reunion fueron: \n\n");
+                    for (Empleado emp : reu.obtenerAsistencias()) {
+                        escritor.write(emp.Datos() + "\n"); // Escribir los datos de los empleados q asistieron
                     }
-                } else {
+                    escritor.write("\nY el porcentaje de asistentes fue de un " + reu.obtenerPorcentajeAsistencia() + "%\n");
+                }
+                else {
                     escritor.write("Ninguna persona asiastio a la reunión");
-                    throw new SinAsistentesException("Ninguno de los empleado que estaba en la lista de invitados de la reunion asistio a la reunión");
+                    throw new SinContenidoException("Ninguno de los empleado que estaba en la lista de invitados de la reunion asistio a la reunión");
                 }
 
-                ArrayList<Empleado> atrasados = reu.obtenerAsistencias();
-                if (atrasados.size() != 0) {
-                    for (int i = 0; i < atrasados.size(); i++) {
-                        Empleado emp1 = atrasados.get(i);
-                        escritor.write(emp1.getDatos() + "\n"); // Escribir los datos de los empleados q asistieron
+                if (!reu.obtenerAtraso().isEmpty()) {
+                    escritor.write("\nLos empleados que llegaron tarde son: \n\n");
+                    for (Empleado emp : reu.obtenerAtraso()) {
+                        escritor.write(emp.Datos() + "\n"); // Escribir los datos de los empleados que llegaron tarde
                     }
-                } else {
-                    escritor.write("Ninguna persona llego atrasada a la reunión");
-                    throw new SinAsistentesException("Ninguna persona llegoa atrasada");
+                }
+                else {
+                    escritor.write("\nNinguna persona llego atrasada a la reunión\n\n");
+                    throw new SinContenidoException("Ninguna persona llegoa atrasada\n");
+                }
+
+                if(!reu.obtenerAusencias().isEmpty()) {
+                    escritor.write("\nLas personas que no llegaron a la reunión fueron: \n\n");
+                    for (Empleado ausente : reu.obtenerAusencias()) {
+                        escritor.write(ausente.Datos() + "\n");
+                    }
+                }
+                else {
+                    escritor.write("\nNinguna persona falto a la reunión\n\n");
+                    throw new SinContenidoException("Ningun empleado falto a la reunion\n");
                 }
 
                 if (reu instanceof ReunionVirtual) {
                     escritor.write("La reunión fue virtual y se uso el enlace: " + ((ReunionVirtual) reu).getEnlace() + "\n\n");
-                } else if (reu instanceof ReunionPresencial) {
+                }
+                else if (reu instanceof ReunionPresencial) {
                     escritor.write("La reunión fue precencial y fue en la sala: " + ((ReunionPresencial) reu).getSala() + "\n\n");
                 }
 
-                escritor.write("Las notas generadas en la reunion fueron las siguente: \n\n");
-                ArrayList<Nota> notasfinales = reu.getNoptas();
-                if (notasfinales.size() != 0) {
+
+                ArrayList<Nota> notasfinales = reu.getNotas();
+                if (!notasfinales.isEmpty()) {
+                    escritor.write("Las notas generadas en la reunion fueron las siguente: \n\n");
                     for (int i = 0; i < notasfinales.size(); i++) {
-                        escritor.write(notasfinales.get(i).getAnotacion() + "\n");
+                        escritor.write(notasfinales.get(i).getAnotacion() + "\n\n");
                     }
-                } else {
+                }
+                else {
                     escritor.write("No se creo ninguna nota durante la reunión");
-                    throw new NotasNullException();
+                    throw new SinContenidoException("No se creo ninguna nota\n");
                 }
             }
+
             else{
-                throw new ReunionNoValidaException();
+                throw new ReunionNoValidaException("La reunión no se a creado correctamente, intentar nuevamente o con otra reunión");
             }
 
 
@@ -63,6 +87,3 @@ public class Informe {//esta cumple las necesidades de la clase informe, no de n
         }
     }
 }
-//####################
-//preguntar si la puedo convertir en una interface y q reu herede su metodo
-//#####

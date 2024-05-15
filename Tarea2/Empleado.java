@@ -1,5 +1,4 @@
 package Tarea2;
-import Tarea2.excepciones.*;
 import Tarea2.Reunion.*;
 import java.time.Instant;
 import java.util.Objects;
@@ -12,7 +11,7 @@ public class Empleado implements Invitable {
     public Instant horallegada;
 
     @Override
-    public void invitar(Reunion reu, Empleado emp){
+    public void Invitar(Reunion reu, Empleado emp){
         reu.agregarInvitados(emp);
     }
 
@@ -35,7 +34,7 @@ public class Empleado implements Invitable {
         return Objects.hash(id);
     }
 
-    public String getDatos(){
+    public String Datos(){
         return "id: " + id + "; nombre: " + nombre + "; Apellidos: " + apellidos + "; correo: " + correo ;
     }
 }

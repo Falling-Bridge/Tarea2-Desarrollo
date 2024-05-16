@@ -19,8 +19,4 @@ public class Atraso extends Asistencia{
     public ArrayList<Empleado> getAtrasados(){
         return atrasados;
     }
-
-    public Instant getHora(){
-        return hora;
-    }
 }

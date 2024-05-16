@@ -2,8 +2,6 @@ package Tarea2;
 import Tarea2.Reunion.*;
 import org.junit.jupiter.api.*;
 import java.time.Duration;
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Tests {
@@ -17,7 +15,7 @@ public class Tests {
 
     @Test   @DisplayName("test02")//agregación de los empleados a la lista de empleados
     public void AgregarEmpleadoALista() {
-        Departamento departamento = new Departamento(0);
+        Departamento departamento = new Departamento(0, "departamento");
         Empleado empleado1 = new Empleado("001", "Juan", "Pérez","juan@example.com" );
         Empleado empleado2 = new Empleado("002", "María", "López", "maria@example.com");
         departamento.AgregarEmpleado(empleado1);
@@ -28,7 +26,7 @@ public class Tests {
 
     @Test   @DisplayName("test03") //prueba que no hayan empleados repetidos
     public void noHayEmpleadosDuplicados() {
-        Departamento departamento = new Departamento(0);
+        Departamento departamento = new Departamento(0, "departamento");
         Empleado empleado1 = new Empleado("001", "Juan", "Pérez", "juan@example.com");
         Empleado empleado2 = new Empleado("001", "Juan", "Pérez", "juan@example.com");
         Empleado empleado3 = new Empleado("002", "María", "López", "maria@example.com");
@@ -42,48 +40,42 @@ public class Tests {
 
     @Test   @DisplayName("test 04") //creación de reunión presencial con tiempo
     public void CrearReunionespresenciales() {
-        Departamento departamento = new Departamento(0);
+        Departamento departamento = new Departamento(0, "departamento");
         Empleado organizador = new Empleado("001", "Juan", "Pérez", "juan@example.com");
         departamento.AgregarEmpleado(organizador);
-        Duration duration = Duration.ofSeconds(10);
-        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.MARKETING, "Sala 202", duration);
+        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.MARKETING, "Sala 202");
 
         assertNotNull(reunionpres, "La reunión presencial no se creó correctamente");
         assertEquals(organizador, departamento.Organizadorreunion(), "El organizador de la reunión no coincide");
-        assertEquals(tipoReunion.MARKETING, reunionpres.getType(), "El tipo de reunión no coincide");
+        assertEquals(tipoReunion.MARKETING, reunionpres.obtenerTipoReunion(), "El tipo de reunión no coincide");
         assertEquals("Sala 202", reunionpres.getSala(), "El lugar de la reunión no coincide");
     }
 
     @Test   @DisplayName("test 05") //creación de reunión virtual con tiempo
     public void CrearReunionesvirtuales() {
-        Departamento departamento = new Departamento(0);
+        Departamento departamento = new Departamento(0,"departamento");
         Empleado organizador = new Empleado("001", "Juan", "Pérez", "juan@example.com");
         departamento.AgregarEmpleado(organizador);
-        Duration duration = Duration.ofSeconds(10);
-        ReunionVirtual reunionvir = new ReunionVirtual(organizador, tipoReunion.MARKETING, "https://www.youtube.com/watch?v=xvFZjo5PgG0", duration);
+        ReunionVirtual reunionvir = new ReunionVirtual(organizador, tipoReunion.MARKETING, "https://www.youtube.com/watch?v=xvFZjo5PgG0");
 
         assertNotNull(reunionvir, "La reunión virtual no se creó correctamente");
         assertEquals(organizador, departamento.Organizadorreunion(), "El organizador de la reunión no coincide");
-        assertEquals(tipoReunion.MARKETING, reunionvir.getType(), "El tipo de reunión no coincide");
+        assertEquals(tipoReunion.MARKETING, reunionvir.obtenerTipoReunion(), "El tipo de reunión no coincide");
         assertEquals("https://www.youtube.com/watch?v=xvFZjo5PgG0", reunionvir.getEnlace(), "El lugar de la reunión no coincide");
     }
 
     @Test   @DisplayName("test 06") //creación de reunion presencial con personas y tiempo
     public void CrearReunionespresencialesconempleados() throws Exception { //reunion presencial con tiempos y personas
-        Departamento departamento = new Departamento(0);
-        Invitacion invitation = new Invitacion();
+        Departamento departamento = new Departamento(0, "departamento");
         Empleado organizador = new Empleado("001", "Juan", "Pérez", "juan@example.com");
         Empleado empleado1 = new Empleado("002", "María", "López", "maria@example.com");
         Empleado empleado2 = new Empleado("003", "Pablo", "Ética", "pablo@example.com");
         departamento.AgregarEmpleado(organizador);
         departamento.AgregarEmpleado(empleado1);
         departamento.AgregarEmpleado(empleado2);
-        Duration duracionreunion = Duration.ofSeconds(10);
-        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.MARKETING, "Sala 202", duracionreunion);
+        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.MARKETING, "Sala 202");
 
-        invitation.Invitar(reunionpres, organizador);
-        invitation.Invitar(reunionpres, empleado1);
-        invitation.Invitar(reunionpres, empleado2);
+        reunionpres.InvitarDepartamento(departamento);
         reunionpres.llegadaEmpleados(organizador);
         reunionpres.llegadaEmpleados(empleado1);
         reunionpres.llegadaEmpleados(empleado2);
@@ -99,20 +91,16 @@ public class Tests {
 
     @Test   @DisplayName("test 07") //creación de reunion virtual con personas y tiempo
     public void CrearReunionesvirtualesconempleados() throws Exception { //reunion presencial con tiempos y personas
-        Departamento departamento = new Departamento(0);
-        Invitacion invitation = new Invitacion();
+        Departamento departamento = new Departamento(0, "departamento");
         Empleado organizador = new Empleado("001", "Juan", "Pérez", "juan@example.com");
         Empleado empleado1 = new Empleado("002", "María", "López", "maria@example.com");
         Empleado empleado2 = new Empleado("003", "Pablo", "Ética", "pablo@example.com");
         departamento.AgregarEmpleado(organizador);
         departamento.AgregarEmpleado(empleado1);
         departamento.AgregarEmpleado(empleado2);
-        Duration duracionreunion = Duration.ofSeconds(10);
-        ReunionVirtual reunionvir = new ReunionVirtual(organizador, tipoReunion.MARKETING, "\"https://www.youtube.com/watch?v=xvFZjo5PgG0\"", duracionreunion);
+        ReunionVirtual reunionvir = new ReunionVirtual(organizador, tipoReunion.MARKETING, "\"https://www.youtube.com/watch?v=xvFZjo5PgG0\"");
 
-        invitation.Invitar(reunionvir, organizador);
-        invitation.Invitar(reunionvir, empleado1);
-        invitation.Invitar(reunionvir, empleado2);
+        reunionvir.InvitarDepartamento(departamento);
         reunionvir.llegadaEmpleados(empleado1);
         reunionvir.llegadaEmpleados(empleado2);
         reunionvir.llegadaEmpleados(organizador);
@@ -128,20 +116,16 @@ public class Tests {
 
     @Test   @DisplayName("test 08") //creación de reuniones presenciales con personas, inasistencias y tiempo
     public void Crearreunionespresencialesconinasistencias() throws Exception {
-        Departamento departamento = new Departamento(0);
-        Invitacion invitation = new Invitacion();
+        Departamento departamento = new Departamento(0, "departamento");
         Empleado organizador = new Empleado("001", "Juan", "Pérez", "juan@example.com");
         Empleado empleado1 = new Empleado("002", "María", "López", "maria@example.com");
         Empleado empleado2 = new Empleado("003", "Pablo", "Ética", "pablo@example.com");
         departamento.AgregarEmpleado(organizador);
         departamento.AgregarEmpleado(empleado1);
         departamento.AgregarEmpleado(empleado2);
-        Duration duracionreunion = Duration.ofSeconds(10);
-        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.MARKETING, "Sala 202", duracionreunion);
+        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.MARKETING, "Sala 202");
 
-        invitation.Invitar(reunionpres, organizador);
-        invitation.Invitar(reunionpres, empleado1);
-        invitation.Invitar(reunionpres, empleado2);
+        reunionpres.InvitarDepartamento(departamento);
         reunionpres.llegadaEmpleados(empleado1);
         reunionpres.llegadaEmpleados(organizador);
         reunionpres.obtenerFechayHoraReunion();
@@ -158,20 +142,16 @@ public class Tests {
 
     @Test   @DisplayName("test 09") //creación de reuniones virtuales con personas, inasistencias y tiempo
     public void Crearreunionesvirtualesesconinasistencias() throws Exception {
-        Departamento departamento = new Departamento(0);
-        Invitacion invitation = new Invitacion();
+        Departamento departamento = new Departamento(0, "departamento");
         Empleado organizador = new Empleado("001", "Juan", "Pérez", "juan@example.com");
         Empleado empleado1 = new Empleado("002", "María", "López", "maria@example.com");
         Empleado empleado2 = new Empleado("003", "Pablo", "Ética", "pablo@example.com");
         departamento.AgregarEmpleado(organizador);
         departamento.AgregarEmpleado(empleado1);
         departamento.AgregarEmpleado(empleado2);
-        Duration duracionreunion = Duration.ofSeconds(10);
-        ReunionVirtual reunionvir = new ReunionVirtual(organizador, tipoReunion.MARKETING, "\"https://www.youtube.com/watch?v=xvFZjo5PgG0\"", duracionreunion);
+        ReunionVirtual reunionvir = new ReunionVirtual(organizador, tipoReunion.MARKETING, "\"https://www.youtube.com/watch?v=xvFZjo5PgG0\"");
 
-        invitation.Invitar(reunionvir, organizador);
-        invitation.Invitar(reunionvir, empleado1);
-        invitation.Invitar(reunionvir, empleado2);
+        reunionvir.InvitarDepartamento(departamento);
         reunionvir.llegadaEmpleados(empleado1);
         reunionvir.llegadaEmpleados(organizador);
         reunionvir.iniciar();
@@ -187,20 +167,16 @@ public class Tests {
 
     @Test   @DisplayName("test10")//creacion de reuniones presenciales con asistencias, retrasos y ausencias
     public void Reunionespresencialescontiempoasistenciayretraso() throws Exception {
-        Departamento departamento = new Departamento(0);
-        Invitacion invitation = new Invitacion();
+        Departamento departamento = new Departamento(0, "departamento");
         Empleado organizador = new Empleado("001", "Juan", "Pérez", "juan@example.com");
         Empleado empleado1 = new Empleado("002", "María", "López", "maria@example.com");
         Empleado empleado2 = new Empleado("003", "Pablo", "Ética", "pablo@example.com");
         departamento.AgregarEmpleado(organizador);
         departamento.AgregarEmpleado(empleado1);
         departamento.AgregarEmpleado(empleado2);
-        Duration duracionreunion = Duration.ofSeconds(10);
-        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.MARKETING, "Sala 202", duracionreunion);
+        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.MARKETING, "Sala 202");
 
-        invitation.Invitar(reunionpres, organizador);
-        invitation.Invitar(reunionpres, empleado1);
-        invitation.Invitar(reunionpres, empleado2);
+        reunionpres.InvitarDepartamento(departamento);
         reunionpres.llegadaEmpleados(organizador);
         reunionpres.iniciar();
         Thread.sleep(500);
@@ -217,20 +193,16 @@ public class Tests {
 
     @Test   @DisplayName("test 11") //creación de reuniones presenciales con asistencias, retrasos y ausencias
     public void Reunionespresencialesconasistenciasinasistenciasretrasos() throws Exception {
-        Departamento departamento = new Departamento(0);
-        Invitacion invitation = new Invitacion();
+        Departamento departamento = new Departamento(0, "departamento");
         Empleado organizador = new Empleado("001", "Juan", "Pérez", "juan@example.com");
         Empleado empleado1 = new Empleado("002", "María", "López", "maria@example.com");
         Empleado empleado2 = new Empleado("003", "Pablo", "Ética", "pablo@example.com");
         departamento.AgregarEmpleado(organizador);
         departamento.AgregarEmpleado(empleado1);
         departamento.AgregarEmpleado(empleado2);
-        Duration duracionreunion = Duration.ofSeconds(10);
-        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.TECNICA, "Sala 202", duracionreunion);
+        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.TECNICA, "Sala 202");
 
-        invitation.Invitar(reunionpres, organizador);
-        invitation.Invitar(reunionpres, empleado1);
-        invitation.Invitar(reunionpres, empleado2);
+        reunionpres.InvitarDepartamento(departamento);
         reunionpres.llegadaEmpleados(organizador);
         reunionpres.iniciar();
         reunionpres.llegadaEmpleados(empleado1);
@@ -247,20 +219,16 @@ public class Tests {
 
     @Test   @DisplayName("test 12") //creación de reuniones virtuales con asistencias, retrasos y ausencias
     public void Reunionesvirtualesconasistenciasinasistenciasretrasos() throws Exception {
-        Departamento departamento = new Departamento(0);
-        Invitacion invitation = new Invitacion();
+        Departamento departamento = new Departamento(0, "departamento");
         Empleado organizador = new Empleado("001", "Juan", "Pérez", "juan@example.com");
         Empleado empleado1 = new Empleado("002", "María", "López", "maria@example.com");
         Empleado empleado2 = new Empleado("003", "Pablo", "Ética", "pablo@example.com");
         departamento.AgregarEmpleado(organizador);
         departamento.AgregarEmpleado(empleado1);
         departamento.AgregarEmpleado(empleado2);
-        Duration duracionreunion = Duration.ofSeconds(10);
-        ReunionVirtual reunionvir = new ReunionVirtual(organizador, tipoReunion.TECNICA, "\"https://www.youtube.com/watch?v=xvFZjo5PgG0\"", duracionreunion);
+        ReunionVirtual reunionvir = new ReunionVirtual(organizador, tipoReunion.TECNICA, "\"https://www.youtube.com/watch?v=xvFZjo5PgG0\"");
 
-        invitation.Invitar(reunionvir, organizador);
-        invitation.Invitar(reunionvir, empleado1);
-        invitation.Invitar(reunionvir, empleado2);
+        reunionvir.InvitarDepartamento(departamento);
         reunionvir.llegadaEmpleados(organizador);
         reunionvir.iniciar();
         Thread.sleep(500);
@@ -280,8 +248,7 @@ public class Tests {
                                     //fecha - hora de la hora (inicio, fin) - duracion de la reunion - tema de la reunion (tipo reunion)
                                     //nota de lo que se hablò - tipo de reunion (presencial o virtual) - lista invitados, asistentes, atrasados, ausentes
     public void CreaciondeInformereunionpresencial() throws Exception {
-        Departamento departamento = new Departamento(0);
-        Invitacion invitation = new Invitacion();
+        Departamento departamento = new Departamento(0, "departamento");
         Empleado organizador = new Empleado("001", "Juanito","Alcachofa", "juanito@example.com");
         Empleado empleado1 = new Empleado("002", "Juan", "Pérez", "juan@example.com");
         Empleado empleado2 = new Empleado("003", "María", "López", "maria@example.com");
@@ -300,18 +267,9 @@ public class Tests {
         departamento.AgregarEmpleado(empleado6);
         departamento.AgregarEmpleado(empleado7);
         departamento.AgregarEmpleado(empleado8);
-        Duration duracionreunion = Duration.ofSeconds(10);
-        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.MARKETING, "Sala 202", duracionreunion);
+        ReunionPresencial reunionpres = new ReunionPresencial(organizador, tipoReunion.MARKETING, "Sala 202");
 
-        invitation.Invitar(reunionpres, organizador);
-        invitation.Invitar(reunionpres, empleado1);
-        invitation.Invitar(reunionpres, empleado2);
-        invitation.Invitar(reunionpres, empleado3);
-        invitation.Invitar(reunionpres, empleado4);
-        invitation.Invitar(reunionpres, empleado5);
-        invitation.Invitar(reunionpres, empleado6);
-        invitation.Invitar(reunionpres, empleado7);
-        invitation.Invitar(reunionpres, empleado8);
+        reunionpres.InvitarDepartamento(departamento);
 
         reunionpres.llegadaEmpleados(organizador);
         reunionpres.llegadaEmpleados(empleado1);
@@ -354,8 +312,7 @@ public class Tests {
                                     //nota de lo que se hablò - tipo de reunion (presencial o virtual) - lista invitados, asistentes, atrasados, ausentes
 
     public void CreaciondeInformereunionvirtual() throws Exception {
-        Departamento departamento = new Departamento(0);
-        Invitacion invitation = new Invitacion();
+        Departamento departamento = new Departamento(0, "departamento");
         Empleado organizador = new Empleado("001", "Juanito", "Alcachofa", "juanito@example.com");
         Empleado empleado1 = new Empleado("002", "Juan", "Pérez", "juan@example.com");
         Empleado empleado2 = new Empleado("003", "María", "López", "maria@example.com");
@@ -374,18 +331,9 @@ public class Tests {
         departamento.AgregarEmpleado(empleado6);
         departamento.AgregarEmpleado(empleado7);
         departamento.AgregarEmpleado(empleado8);
-        Duration duracionreunion = Duration.ofSeconds(10);
-        ReunionVirtual reunionvir = new ReunionVirtual(organizador, tipoReunion.TECNICA, "\"https://www.youtube.com/watch?v=xvFZjo5PgG0\"", duracionreunion);
+        ReunionVirtual reunionvir = new ReunionVirtual(organizador, tipoReunion.TECNICA, "\"https://www.youtube.com/watch?v=xvFZjo5PgG0\"");
 
-        invitation.Invitar(reunionvir, organizador);
-        invitation.Invitar(reunionvir, empleado1);
-        invitation.Invitar(reunionvir, empleado2);
-        invitation.Invitar(reunionvir, empleado3);
-        invitation.Invitar(reunionvir, empleado4);
-        invitation.Invitar(reunionvir, empleado5);
-        invitation.Invitar(reunionvir, empleado6);
-        invitation.Invitar(reunionvir, empleado7);
-        invitation.Invitar(reunionvir, empleado8);
+        reunionvir.InvitarDepartamento(departamento);
 
         reunionvir.llegadaEmpleados(organizador);
         reunionvir.llegadaEmpleados(empleado1);

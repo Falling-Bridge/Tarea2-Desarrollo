@@ -4,8 +4,8 @@ import Tarea2.Reunion.*;
 
 public class Departamento implements Invitable {
     private ArrayList<Empleado> employeedepartamento;
-    private ArrayList<Reunion> empleadosreunion;
     private int numEmpleados;
+    private String nombredepartamento;
 
     public int ObtenerCantidadEmpleados(){
         for (Empleado empleado : employeedepartamento) {
@@ -36,9 +36,9 @@ public class Departamento implements Invitable {
         return employeedepartamento;
     }
 
-    public Departamento(int num){
+    public Departamento(int num, String name){
         numEmpleados = num;
         employeedepartamento = new ArrayList<>();
-        empleadosreunion = new ArrayList<>();
+        nombredepartamento = name;
     }
 }

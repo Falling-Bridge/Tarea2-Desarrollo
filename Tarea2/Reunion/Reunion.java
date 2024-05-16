@@ -8,7 +8,6 @@ public abstract class Reunion {
     private Date fecha;
     private LocalTime horadeCreacion;
     private Empleado Organizador;
-    private Duration duracionPrevista;
     private Instant horaInicio;
     private Instant horaFin;
     private Asistencia attendace;
@@ -27,16 +26,6 @@ public abstract class Reunion {
 
     public void agregarInvitados(Empleado emp){
         listaInvitados.invitado.add(emp);
-    }
-
-    public ArrayList<Empleado> listanoInvitados(ArrayList<Empleado> listaInvitados, Empleado em) {
-        ArrayList<Empleado> noInvitados = new ArrayList<>();
-        for (Empleado invitado : listaInvitados) {
-            if (!invitado.equals(em)) {
-                noInvitados.add(invitado);
-            }
-        }
-        return noInvitados;
     }
 
     public ArrayList<Empleado> obtenerAsistencias(){
@@ -71,7 +60,6 @@ public abstract class Reunion {
         }else {
             throw new EmpleadoNoInvitadoException("El empleado no ha sido invitado");
         }
-
     }
 
     public float obtenerPorcentajeAsistencia(){ //float
@@ -93,14 +81,8 @@ public abstract class Reunion {
     public ArrayList getNotas(){
         return notas;
     }
-    /*
-     * Calcula el tiempo que dura la reunion considerando la hora de inicio y la hora de finalización
-     * */
-    public Duration getDuracion(){
-        return duracionPrevista;
-    }
-    /*
-     * Al llamar a este metódo se marca la hora de inicio de la reunion
+
+    /* Al llamar a este metódo se marca la hora de inicio de la reunion
      * con una función de time.Instant
      * */
     public Instant iniciar(){
@@ -117,6 +99,12 @@ public abstract class Reunion {
      * */
     public String datosOrganizador(){
         return Organizador.Datos();
+    }
+
+    public void InvitarDepartamento(Departamento departamento){
+        for (Empleado emp : departamento.getEmpleados()){
+            agregarInvitados(emp);
+        }
     }
 
     public Reunion(Empleado org, tipoReunion tipo){

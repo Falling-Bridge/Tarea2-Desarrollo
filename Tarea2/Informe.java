@@ -16,9 +16,28 @@ public class Informe {
                 Object[] FechayHora = reu.obtenerFechayHoraReunion();
                 escritor.write("La reunion se creo el día " + FechayHora[0] + " a las " + FechayHora[1]);
                 Instant[] horas = reu.obtenerHoraInicioyFin();
-                escritor.write(", empezo a las " + horas[0] + " y termino a las  " + horas[1]);
+                escritor.write(", empezo a las " + horas[0] + "\n y termino a las  " + horas[1]);
                 escritor.write(" y duro un tiempo de " + Duration.between(horas[0], horas[1]) + "\n\n");
                 escritor.write("La reunion es de tipo " + reu.obtenerTipoReunion() + "\n\n");
+
+                if (reu instanceof ReunionVirtual) {
+                    escritor.write("La reunión fue virtual y se uso el enlace: " + ((ReunionVirtual) reu).getEnlace() + "\n\n");
+                }
+                else if (reu instanceof ReunionPresencial) {
+                    escritor.write("La reunión fue presencial y tomo lugar en la sala: " + ((ReunionPresencial) reu).getSala() + "\n\n");
+                }
+
+                ArrayList<Nota> notasfinales = reu.getNotas();
+                if (!notasfinales.isEmpty()) {
+                    escritor.write("Las notas generadas en la reunion fueron las siguente: \n\n");
+                    for (int i = 0; i < notasfinales.size(); i++) {
+                        escritor.write(notasfinales.get(i).getAnotacion() + "\n\n");
+                    }
+                }
+                else {
+                    escritor.write("No se creo ninguna nota durante la reunión");
+                    throw new SinContenidoException("No se creo ninguna nota\n");
+                }
 
                 if (!reu.obtenerAsistencias().isEmpty()) {
                     escritor.write("El/Los empleado/s que asistieron a la reunion es/fueron: \n\n");
@@ -52,26 +71,6 @@ public class Informe {
                 else {
                     escritor.write("\nNinguna persona falto a la reunión\n\n");
                     throw new SinContenidoException("Ningun empleado falto a la reunion\n");
-                }
-
-                if (reu instanceof ReunionVirtual) {
-                    escritor.write("La reunión fue virtual y se uso el enlace: " + ((ReunionVirtual) reu).getEnlace() + "\n\n");
-                }
-                else if (reu instanceof ReunionPresencial) {
-                    escritor.write("La reunión fue precencial y fue en la sala: " + ((ReunionPresencial) reu).getSala() + "\n\n");
-                }
-
-
-                ArrayList<Nota> notasfinales = reu.getNotas();
-                if (!notasfinales.isEmpty()) {
-                    escritor.write("Las notas generadas en la reunion fueron las siguente: \n\n");
-                    for (int i = 0; i < notasfinales.size(); i++) {
-                        escritor.write(notasfinales.get(i).getAnotacion() + "\n\n");
-                    }
-                }
-                else {
-                    escritor.write("No se creo ninguna nota durante la reunión");
-                    throw new SinContenidoException("No se creo ninguna nota\n");
                 }
             }
 

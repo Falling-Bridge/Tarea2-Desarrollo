@@ -21,7 +21,7 @@ public class Informe {
                 escritor.write("La reunion es de tipo " + reu.obtenerTipoReunion() + "\n\n");
 
                 if (!reu.obtenerAsistencias().isEmpty()) {
-                    escritor.write("Los empleados que asistieron a la reunion fueron: \n\n");
+                    escritor.write("El/Los empleado/s que asistieron a la reunion es/fueron: \n\n");
                     for (Empleado emp : reu.obtenerAsistencias()) {
                         escritor.write(emp.Datos() + "\n"); // Escribir los datos de los empleados q asistieron
                     }
@@ -33,7 +33,7 @@ public class Informe {
                 }
 
                 if (!reu.obtenerAtraso().isEmpty()) {
-                    escritor.write("\nLos empleados que llegaron tarde son: \n\n");
+                    escritor.write("\nEl/Los empleados que llegaro/n tarde es/fueron" + reu.obtenerAtraso().size() +  " es/son: \n\n");
                     for (Empleado emp : reu.obtenerAtraso()) {
                         escritor.write(emp.Datos() + "\n"); // Escribir los datos de los empleados que llegaron tarde
                     }
@@ -44,7 +44,7 @@ public class Informe {
                 }
 
                 if(!reu.obtenerAusencias().isEmpty()) {
-                    escritor.write("\nLas personas que no llegaron a la reunión fueron: \n\n");
+                    escritor.write("\nEl/Las persona/s que no llegaron a la reunión es/fueron: \n\n");
                     for (Empleado ausente : reu.obtenerAusencias()) {
                         escritor.write(ausente.Datos() + "\n");
                     }

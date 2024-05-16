@@ -1,6 +1,5 @@
 package Tarea2;
 import Tarea2.Reunion.*;
-import java.time.Instant;
 import java.util.Objects;
 
 public class Empleado implements Invitable {
@@ -8,7 +7,6 @@ public class Empleado implements Invitable {
     private String apellidos;
     private String nombre;
     private String correo;
-    public Instant horallegada;
 
     @Override
     public void Invitar(Reunion reu, Empleado emp){

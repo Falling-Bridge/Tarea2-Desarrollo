@@ -8,11 +8,11 @@ public class Atraso extends Asistencia{
     
     public Atraso(){
         super();
+        hora = Instant.now();
         atrasados = new ArrayList<Empleado>();
     }
 
-    public void ingresarAtrasados(Empleado emp){
-
+    public void addAtrasados(Empleado emp){
         atrasados.add(emp);
     }
 
@@ -20,6 +20,7 @@ public class Atraso extends Asistencia{
         return atrasados;
     }
 
-
-    
+    public Instant getHora(){
+        return hora;
+    }
 }

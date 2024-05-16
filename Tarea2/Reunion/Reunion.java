@@ -11,26 +11,11 @@ public abstract class Reunion {
     private Duration duracionPrevista;
     private Instant horaInicio;
     private Instant horaFin;
-    private Atraso attendace;
+    private Asistencia attendace;
+    private Atraso atraso;
     private Invitacion listaInvitados;
     private ArrayList<Nota> notas;
     private tipoReunion typereunionreunion;
-
-    public void agregarInvitados(Empleado emp){
-        listaInvitados.invitado.add(emp);
-    }
-
-    public ArrayList<Empleado> obtenerAsistencias(){
-        return attendace.getAsistentes();
-    }
-
-    public ArrayList<Empleado> obtenerAtraso(){
-        return attendace.getAtrasados();
-    }
-
-    public tipoReunion obtenerTipoReunion(){
-        return typereunionreunion;
-    }
 
     public Object[] obtenerFechayHoraReunion(){
         return new Object[]{fecha, horadeCreacion};
@@ -40,45 +25,57 @@ public abstract class Reunion {
         return new Instant[]{horaInicio, horaFin};
     }
 
-    public ArrayList<Empleado> obtenerAusencias(){//list
-        ArrayList<Empleado> ausentes = new ArrayList<Empleado>();
-        for (Empleado invitado : listaInvitados.getInvitados()) {
-            boolean asistio = false;
-            for (Empleado asistente : attendace.getAsistentes()) {
-                if (asistente == invitado) {
-                    asistio = true;
-                    break;
-                }
-            }
-            if (!asistio) {
-                ausentes.add(invitado);
+    public void agregarInvitados(Empleado emp){
+        listaInvitados.invitado.add(emp);
+    }
+
+    public ArrayList<Empleado> listanoInvitados(ArrayList<Empleado> listaInvitados, Empleado em) {
+        ArrayList<Empleado> noInvitados = new ArrayList<>();
+        for (Empleado invitado : listaInvitados) {
+            if (!invitado.equals(em)) {
+                noInvitados.add(invitado);
             }
         }
+        return noInvitados;
+    }
+
+    public ArrayList<Empleado> obtenerAsistencias(){
+        return attendace.getAsistentes();
+    }
+
+    public ArrayList<Empleado> obtenerAtraso(){
+        return atraso.getAtrasados();
+    }
+
+    public ArrayList<Empleado> obtenerAusencias() {
+        ArrayList<Empleado> ausentes = new ArrayList<>(listaInvitados.getInvitados());
+        ausentes.removeAll(attendace.getAsistentes());
         return ausentes;
     }
 
-    public void llegadaEmpleados(Empleado em) throws Exception{
-        if(listaInvitados.getInvitados().contains(em)){
-            em.horallegada = Instant.now();
-            if (horaInicio == null) {
-                attendace.addAsistentes(em);
-            } else if (em.horallegada.compareTo(horaInicio) < 0) {
-                attendace.addAsistentes(em);
-            } else {
-                attendace.ingresarAtrasados(em);
-            }
-        }
-        else {
-            throw new EmpleadoNoInvitadoException("El empleado no está registrado");
-        }
+    public tipoReunion obtenerTipoReunion(){
+        return typereunionreunion;
     }
 
-    public ArrayList<Empleado> obtenerRetrasos(){
-        return attendace.getAtrasados();
+    public void llegadaEmpleados(Empleado em) throws Exception {
+        if(listaInvitados.getInvitados().contains(em)){
+            Instant aux = Instant.now();
+            if (horaInicio == null) {
+                attendace.addAsistentes(em);
+            }else {
+                if (horaFin == null) {
+                    attendace.addAsistentes(em);
+                    atraso.addAtrasados(em);
+                }
+            }
+        }else {
+            throw new EmpleadoNoInvitadoException("El empleado no ha sido invitado");
+        }
+
     }
 
     public float obtenerPorcentajeAsistencia(){ //float
-        return (float) (attendace.cantAsistentes()) / listaInvitados.invitado.size();
+        return (float) (attendace.getAsistentes().size()) / listaInvitados.invitado.size();
     }
 
     /*
@@ -100,24 +97,21 @@ public abstract class Reunion {
      * Calcula el tiempo que dura la reunion considerando la hora de inicio y la hora de finalización
      * */
     public Duration getDuracion(){
-        duracionPrevista = Duration.between(horaInicio, horaFin);
         return duracionPrevista;
     }
     /*
      * Al llamar a este metódo se marca la hora de inicio de la reunion
      * con una función de time.Instant
      * */
-    public void iniciar(){
-        horaInicio = Instant.now();
+    public Instant iniciar(){
+        return horaInicio = Instant.now();
     }
-
     /*
      *Al llamar este metódo se marca la hora en que se finaliza la reunión
      * */
-    public void finalizar(){
-        horaFin = Instant.now();
+    public Instant finalizar() {
+        return horaFin = Instant.now();
     }
-
     /*
      * Metodo que se usa en Nota para entregar mas informción acerca del organizador de la reunion
      * */
@@ -126,7 +120,8 @@ public abstract class Reunion {
     }
 
     public Reunion(Empleado org, tipoReunion tipo){
-        attendace = new Atraso();
+        attendace = new Asistencia();
+        atraso = new Atraso();
         listaInvitados = new Invitacion();
         notas = new ArrayList<Nota>();
         Organizador = org;

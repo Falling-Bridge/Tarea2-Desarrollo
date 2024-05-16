@@ -1,0 +1,36 @@
+Organizador de la reunión: 
+id: 001; nombre: Juanito; Apellidos: Alcachofa; correo: juanito@example.com
+
+La reunion se creo el día Wed May 15 23:56:52 CLT 2024 a las 23:56:52.228763900, empezo a las 2024-05-16T03:56:52.228763900Z
+ y termino a las  2024-05-16T03:56:52.731289500Z y duro un tiempo de PT0.5025256S
+
+La reunion es de tipo TECNICA
+
+La reunión fue virtual y se uso el enlace: "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+
+Las notas generadas en la reunion fueron las siguente: 
+
+Se hablò de como mejorar los tècnicas al momento de hablar con el cliente
+
+El/Los empleado/s que asistieron a la reunion es/fueron: 
+
+id: 001; nombre: Juanito; Apellidos: Alcachofa; correo: juanito@example.com
+id: 002; nombre: Juan; Apellidos: Pérez; correo: juan@example.com
+id: 003; nombre: María; Apellidos: López; correo: maria@example.com
+id: 004; nombre: Pedro; Apellidos: González; correo: pedro@example.com
+id: 005; nombre: Ana; Apellidos: Martínez; correo: ana@example.com
+id: 006; nombre: Carlos; Apellidos: Rodríguez; correo: carlos@example.com
+
+Y el porcentaje de asistentes fue de un 0.6666667%
+
+El/Los empleados que llegaro/n tarde es/fueron3 es/son: 
+
+id: 004; nombre: Pedro; Apellidos: González; correo: pedro@example.com
+id: 005; nombre: Ana; Apellidos: Martínez; correo: ana@example.com
+id: 006; nombre: Carlos; Apellidos: Rodríguez; correo: carlos@example.com
+
+El/Las persona/s que no llegaron a la reunión es/fueron: 
+
+id: 007; nombre: Sofía; Apellidos: Hernández; correo: sofia@example.com
+id: 008; nombre: Luis; Apellidos: Díaz; correo: luis@example.com
+id: 009; nombre: Laura; Apellidos: García; correo: laura@example.com
